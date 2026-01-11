@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1768056273 source:c:\a50607\qlks1\khachhang.cpp
+	"KhachHang.h"
+	<bits/stdc++.h>
+
+1767797908 c:\a50607\qlks1\khachhang.h
+	<iostream>
+
+1768123942 source:c:\a50607\qlks1\phong.cpp
+	"Phong.h"
+	<bits/stdc++.h>
+
+1768052517 c:\a50607\qlks1\phong.h
+	<iostream>
+
+1768124227 source:c:\a50607\qlks1\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"Phong.h"
+	"KhachHang.h"
+	<bits/stdc++.h>
+
+1767797908 c:\a50607\qlks1\datphong.h
+
