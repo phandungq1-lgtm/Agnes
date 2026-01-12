@@ -35,7 +35,7 @@ void themPhong() {
     ofstream f("phong.dat", ios::binary | ios::app);
     f.write((char*)&p, sizeof(p));
     f.close();
-    cout << "Them phong thanh cong";
+    cout << "Them phong thanh cong !";
 }
 
 /* ===== SUA PHONG ===== */
@@ -43,25 +43,36 @@ void suaPhong() {
     Phong p;
     char ma[10];
     char loaiPhongMoi[20];
+    cin.ignore();
+    // Nhap ma phong, khong duoc de trong
+    do {
+        cout << "Nhap ma phong can sua (khong duoc de trong): ";
+        cin.getline(ma, 10);
+        if (strlen(ma) == 0) {
+            cout << "Ma phong khong duoc de trong!\n";
+        }
+    } while (strlen(ma) == 0);
 
-    cout << "Nhap ma phong can sua: ";
-    cin >> ws;
-    cin.getline(ma, 10);
-    cout << "Nhap loai phong: ";
-    cin.getline(loaiPhongMoi, 20);
+    // Nhap loai phong moi, khong duoc de trong
+    do {
+        cout << "Nhap loai phong moi (khong duoc de trong): ";
+        cin.getline(loaiPhongMoi, 20);
+        if (strlen(loaiPhongMoi) == 0) {
+            cout << "Loai phong khong duoc de trong!\n";
+        }
+    } while (strlen(loaiPhongMoi) == 0);
 
     fstream f("phong.dat", ios::binary | ios::in | ios::out);
 
     while (f.read((char*)&p, sizeof(p))) {
         if (strcmp(p.maPhong, ma) == 0) {
-            // phan thay doi
             strcpy(p.loaiPhong, loaiPhongMoi);
-            // phan thay doi
-            //p.nhap();                       // nhập loại phòng, trạng thái, KHÔNG nhập lại mã
-            f.seekp(-sizeof(p), ios::cur); // lùi con trỏ về đúng vị trí phòng vừa đọc
-            f.write((char*)&p, sizeof(p)); // ghi đè
-            f.close();
+
+            f.seekp(-sizeof(p), ios::cur);
+            f.write((char*)&p, sizeof(p));
+
             cout << "Sua phong thanh cong!\n";
+            f.close();
             return;
         }
     }
@@ -143,6 +154,7 @@ void lietKePhong() {
 void themKhachHang() {
     KhachHang k;
     k.nhap();
+    cout << "Them khach hang thanh cong !";
 
     ofstream f("khachhang.dat", ios::binary | ios::app);
     f.write((char*)&k, sizeof(k));
@@ -153,16 +165,18 @@ void themKhachHang() {
 void suaKhachHang() {
     KhachHang k;
     char ma[10];
-
-    cout << "Nhap ma khach hang can sua: ";
-    cin >> ws;
-    cin.getline(ma, 10);
-
+    cin.ignore();
+    do{
+        cout << "Nhap ma khach hang can sua: ";
+        cin.getline(ma, 10);
+        if (strlen(ma)==0){
+            cout << "Ma khach hang khong duoc de trong () \n";
+        }
+    }while(strlen(ma)==0);
     fstream f("khachhang.dat", ios::binary | ios::in | ios::out);
 
     while (f.read((char*)&k, sizeof(k))) {
         if (strcmp(k.maKH, ma) == 0) {
-            cout << "Nhap thong tin moi:\n";
             k.nhap();   // nhập lại tên, sdt...
 
             f.seekp(-sizeof(KhachHang), ios::cur);
