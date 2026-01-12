@@ -154,12 +154,13 @@ void lietKePhong() {
 void themKhachHang() {
     KhachHang k;
     k.nhap();
-    cout << "Them khach hang thanh cong !";
 
     ofstream f("khachhang.dat", ios::binary | ios::app);
     f.write((char*)&k, sizeof(k));
     f.close();
+    cout << "Them khach hang thanh cong !\n";
 }
+
 
 /* ======SUA KHACH HANG ====*/
 void suaKhachHang() {
